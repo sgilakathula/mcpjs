@@ -1,0 +1,1 @@
+std::result::Result<std::string::String, napi::Error>: napi::bindgen_prelude::FromNapiValue

@@ -1,0 +1,39 @@
+[package]
+name = "mcpify"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+authors = ["mcpify contributors"]
+license = "MIT"
+description = "A Fastify-inspired MCP server framework built in Rust"
+repository = "https://github.com/your-org/mcpify"
+homepage = "https://github.com/your-org/mcpify"
+keywords = ["mcp", "ai", "llm", "server", "napi"]
+categories = ["network-programming", "api-bindings"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "2", features = ["napi4", "async", "tokio_rt"] }
+napi-derive = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+uuid = { version = "1", features = ["v4"] }
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+once_cell = "1"
+dashmap = "5"
+jsonschema = "0.18"
+regex = "1"
+
+[build-dependencies]
+napi-build = "2"
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+strip = true
