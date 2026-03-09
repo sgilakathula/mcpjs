@@ -1,13 +1,13 @@
 [package]
-name = "mcpify"
+name = "mcpjs"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.88"
-authors = ["mcpify contributors"]
+authors = ["mcpjs contributors"]
 license = "MIT"
 description = "A Fastify-inspired MCP server framework built in Rust"
-repository = "https://github.com/your-org/mcpify"
-homepage = "https://github.com/your-org/mcpify"
+repository = "https://github.com/your-org/mcpjs"
+homepage = "https://github.com/your-org/mcpjs"
 keywords = ["mcp", "ai", "llm", "server", "napi"]
 categories = ["network-programming", "api-bindings"]
 

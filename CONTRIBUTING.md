@@ -1,4 +1,4 @@
-# Contributing to mcpify
+# Contributing to mcpjs
 
 Thank you for your interest in contributing! This guide will help you get started.
 
@@ -13,8 +13,8 @@ Thank you for your interest in contributing! This guide will help you get starte
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-org/mcpify
-cd mcpify
+git clone https://github.com/your-org/mcpjs
+cd mcpjs
 
 # Install Node.js dependencies
 yarn install
@@ -29,11 +29,11 @@ yarn test
 ## Project Structure
 
 ```
-mcpify/
+mcpjs/
 ├── src/
 │   └── lib.rs          # Rust core: MCP protocol + napi bindings
 ├── __test__/
-│   └── mcpify.test.js  # Node.js tests
+│   └── mcpjs.test.js  # Node.js tests
 ├── examples/
 │   ├── weather-server.js  # stdio transport example
 │   └── http-server.js     # HTTP transport example

@@ -1,5 +1,5 @@
 {
-  "name": "mcpify",
+  "name": "mcpjs",
   "version": "0.1.0",
   "description": "A MCP server framework built in Rust — fast, typed, and plugin-ready",
   "main": "index.js",
@@ -7,11 +7,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/mcpify"
+    "url": "https://github.com/your-org/mcpjs"
   },
-  "homepage": "https://github.com/your-org/mcpify#readme",
+  "homepage": "https://github.com/your-org/mcpjs#readme",
   "bugs": {
-    "url": "https://github.com/your-org/mcpify/issues"
+    "url": "https://github.com/your-org/mcpjs/issues"
   },
   "keywords": [
     "mcp",
@@ -35,7 +35,7 @@
     "README.md"
   ],
   "napi": {
-    "name": "mcpify",
+    "name": "mcpjs",
     "triples": {
       "defaults": true,
       "additional": [

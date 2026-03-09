@@ -1,1 +1,1 @@
-/Users/sathishgilakathula/Desktop/files/target/release/libmcpify.dylib: /Users/sathishgilakathula/Desktop/files/build.rs /Users/sathishgilakathula/Desktop/files/src/lib.rs
+/Users/sathishgilakathula/Desktop/mcpify/target/release/libmcpify.dylib: /Users/sathishgilakathula/Desktop/mcpify/build.rs /Users/sathishgilakathula/Desktop/mcpify/src/lib.rs

@@ -1,19 +1,19 @@
 <div align="center">
-  <h1>⚡ mcpify</h1>
+  <h1>⚡ mcpjs</h1>
   <p><strong>A MCP server framework — built in Rust, runs in Node.js</strong></p>
 
-  <a href="https://www.npmjs.com/package/mcpify"><img src="https://img.shields.io/npm/v/mcpify?style=flat-square&color=cb3837" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/mcpjs"><img src="https://img.shields.io/npm/v/mcpjs?style=flat-square&color=cb3837" alt="npm"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT License"></a>
-  <a href=".github/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/your-org/mcpify/ci.yml?style=flat-square" alt="CI"></a>
-  <a href="https://github.com/your-org/mcpify"><img src="https://img.shields.io/badge/built%20with-Rust-orange?style=flat-square" alt="Rust"></a>
+  <a href=".github/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/your-org/mcpjs/ci.yml?style=flat-square" alt="CI"></a>
+  <a href="https://github.com/your-org/mcpjs"><img src="https://img.shields.io/badge/built%20with-Rust-orange?style=flat-square" alt="Rust"></a>
 </div>
 
 ---
 
-**mcpify** makes building [Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io) servers as ergonomic as building HTTP servers with — with a Rust core for maximum throughput.
+**mcpjs** makes building [Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io) servers as ergonomic as building HTTP servers with — with a Rust core for maximum throughput.
 
 ```js
-const { McpServer, textContent } = require('mcpify')
+const { McpServer, textContent } = require('mcpjs')
 
 const server = new McpServer({ name: 'my-server', version: '1.0.0' })
 
@@ -37,9 +37,9 @@ server.listen({ transport: 'stdio' })
 
 ---
 
-## Why mcpify?
+## Why mcpjs?
 
-| Feature | mcpify | Other MCP libs |
+| Feature | mcpjs | Other MCP libs |
 |---------|--------|----------------|
 | 🦀 Rust core | ✅ Zero-cost protocol parsing | ❌ Pure JS |
 | 🔌 Plugin system | ✅ Like `fastify-plugin` | ❌ Manual |
@@ -54,9 +54,9 @@ server.listen({ transport: 'stdio' })
 ## Installation
 
 ```bash
-npm install mcpify
+npm install mcpjs
 # or
-yarn add mcpify
+yarn add mcpjs
 ```
 
 Prebuilt native binaries are provided for:
@@ -73,9 +73,9 @@ No Rust compiler needed at install time!
 
 ## Core Concepts
 
-mcpify maps MCP primitives directly to Fastify-like patterns:
+mcpjs maps MCP primitives directly to Fastify-like patterns:
 
-| Fastify | mcpify | MCP Equivalent |
+| Fastify | mcpjs | MCP Equivalent |
 |---------|--------|----------------|
 | `fastify.get('/path', handler)` | `server.tool('name', schema, handler)` | Tool |
 | `fastify.get('/static/*', handler)` | `server.resource('name', 'uri://**', opts, handler)` | Resource |
@@ -196,7 +196,7 @@ server.prompt(
 
 ```js
 // Define a reusable plugin
-const { definePlugin } = require('mcpify')
+const { definePlugin } = require('mcpjs')
 
 const cachePlugin = definePlugin('cache', async (server, opts) => {
   const cache = new Map()
@@ -283,7 +283,7 @@ await server.listen({
 ### Content Helpers
 
 ```js
-const { textContent, imageContent, resourceContent } = require('mcpify')
+const { textContent, imageContent, resourceContent } = require('mcpjs')
 
 // Text
 textContent('Hello, world!')
@@ -300,7 +300,7 @@ resourceContent('file:///path/to/file', 'text/plain')
 ### Schema Validation (Rust-powered)
 
 ```js
-const { validateSchema } = require('mcpify')
+const { validateSchema } = require('mcpjs')
 
 const error = validateSchema(
   JSON.stringify({ type: 'object', properties: { name: { type: 'string' } } }),
@@ -361,4 +361,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-[MIT](LICENSE) — © 2025 mcpify contributors
+[MIT](LICENSE) — © 2025 mcpjs contributors

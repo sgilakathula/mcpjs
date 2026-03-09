@@ -80,11 +80,6 @@ export interface HookContext {
   method: string
   timestamp: number
 }
-export interface PluginDefinition {
-  name: string
-  factory: (server: McpServer, opts?: Record<string, unknown>) => void | Promise<void>
-  meta?: Record<string, unknown>
-}
 /** Create a text content block */
 export declare function textContent(text: string): McpContent
 /** Create an image content block */
@@ -99,33 +94,28 @@ export declare function parseJsonrpc(raw: string): JsonRpcRequest
 export declare function jsonrpcOk(id: string | undefined | null, resultJson: string): string
 /** Serialize a JSON-RPC error response */
 export declare function jsonrpcError(id: string | undefined | null, code: number, message: string): string
-export declare function definePlugin(name: string, factory: PluginDefinition['factory'], meta?: Record<string, unknown>): PluginDefinition
 export declare class McpServer {
   /** Create a new MCP server: */
   constructor(options: ServerOptions)
-  readonly log: {
-    error: (...args: unknown[]) => void
-    warn: (...args: unknown[]) => void
-    info: (...args: unknown[]) => void
-    debug: (...args: unknown[]) => void
-  }
-  /** Register a tool */
-  tool(name: string, schema: Partial<Omit<ToolSchema, 'name'>> | ((args: Record<string, unknown>) => unknown | Promise<unknown>), handler?: (args: Record<string, unknown>) => unknown | Promise<unknown>): this
-  /** Register a resource */
-  resource(name: string, uriPattern: string, schema: Partial<Omit<ResourceSchema, 'name' | 'uri'>> | ((uri: string) => unknown | Promise<unknown>), handler?: (uri: string) => unknown | Promise<unknown>): this
-  /** Register a prompt */
-  prompt(name: string, schema: Partial<Omit<PromptSchema, 'name'>> | ((args: Record<string, unknown>) => unknown | Promise<unknown>), handler?: (args: Record<string, unknown>) => unknown | Promise<unknown>): this
-  /** Register a plugin */
-  register(plugin: string | ((server: McpServer, opts?: Record<string, unknown>) => void | Promise<void>) | PluginDefinition, options?: Record<string, unknown>): Promise<this>
-  /** Add a lifecycle hook */
-  addHook(event: 'pre' | 'preRequest' | 'post' | 'postResponse' | 'error' | 'onError', hook: (err: Error | null, arg: string) => any): this
-  /** Decorate the server with custom values */
-  decorate(key: string, value: unknown): this
+  /** Register a tool: */
+  tool(name: string, schema: ToolSchema, handler: (err: Error | null, arg: string) => any): this
+  /** Register a resource: */
+  resource(name: string, uriPattern: string, schema: ResourceSchema, handler: (err: Error | null, arg: string) => any): this
+  /** Register a prompt template */
+  prompt(name: string, schema: PromptSchema, handler: (err: Error | null, arg: string) => any): this
+  /** Register a plugin : */
+  register(pluginName: string, options?: PluginOptions | undefined | null): this
+  /** Add a pre-request lifecycle hook : */
+  addHookPre(hook: (err: Error | null, arg: string) => any): this
+  /** Add a post-response lifecycle hook */
+  addHookPost(hook: (err: Error | null, arg: string) => any): this
+  /** Add an error lifecycle hook : */
+  addHookError(hook: (err: Error | null, arg: string) => any): this
+  /** Decorate the server with custom values: */
+  decorate(key: string, value: string): this
   /** Get a decorator value */
-  getDecorator(key: string): unknown
-  /** Start the server transport */
-  listen(options?: ListenOptions): Promise<this>
-  /** Handle an incoming JSON-RPC request */
+  getDecorator(key: string): string | null
+  /** Handle an incoming JSON-RPC request (the core dispatch loop) */
   handleRequest(rawRequest: string): Promise<string>
   /** List all registered tools */
   listTools(): Array<string>
@@ -133,17 +123,7 @@ export declare class McpServer {
   listResources(): Array<string>
   /** List all registered prompts */
   listPrompts(): Array<string>
-  /** Parse server info */
-  info(): {
-    name: string
-    version: string
-    description?: string
-    mcpifyVersion?: string
-    tools: Array<string>
-    resources: Array<string>
-    prompts: Array<string>
-  }
-  /** Get raw server info JSON */
+  /** Get server info */
   serverInfo(): string
   /** Generate a unique request ID (for internal use) */
   generateId(): string

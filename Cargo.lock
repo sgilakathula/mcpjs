@@ -747,7 +747,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "mcpify"
+name = "mcpjs"
 version = "0.1.0"
 dependencies = [
  "dashmap",

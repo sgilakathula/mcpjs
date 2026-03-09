@@ -12,7 +12,7 @@ const { McpServer, textContent, imageContent, definePlugin } = require('./index.
 const server = new McpServer({
   name: 'weather-server',
   version: '1.0.0',
-  description: 'Demo MCP weather server built with mcpify',
+  description: 'Demo MCP weather server built with mcpjs',
   logLevel: 'info',
 })
 

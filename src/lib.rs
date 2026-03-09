@@ -1,4 +1,4 @@
-// src/lib.rs — mcpify:MCP server framework
+// src/lib.rs — mcpjs:MCP server framework
 
 #![deny(clippy::all)]
 #![allow(clippy::needless_pass_by_value)]
@@ -169,13 +169,13 @@ impl McpServer {
 
         tracing_subscriber::fmt()
             .with_env_filter(
-                tracing_subscriber::EnvFilter::new(format!("mcpify={}", log_level))
+                tracing_subscriber::EnvFilter::new(format!("mcpjs={}", log_level))
             )
             .try_init()
             .ok();
 
         tracing::info!(
-            "🚀 mcpify v{} — {} initializing",
+            "🚀 mcpjs v{} — {} initializing",
             env!("CARGO_PKG_VERSION"),
             options.name
         );
@@ -508,7 +508,7 @@ impl McpServer {
             "name": self.name,
             "version": self.version,
             "description": self.description,
-            "mcpifyVersion": env!("CARGO_PKG_VERSION"),
+            "mcpjsVersion": env!("CARGO_PKG_VERSION"),
             "tools": self.list_tools(),
             "resources": self.list_resources(),
             "prompts": self.list_prompts(),
